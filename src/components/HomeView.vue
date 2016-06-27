@@ -4,24 +4,31 @@
   >
     <div class="left-column">
       <div class="col-image">
-        <div class="item">
-          <a href="/"><img src="http://image.wufazhuce.com/FjpFTr2xafDR6TLJCglfxX2kmz_-" width="100%"></a>
+        <div class="item"
+             v-for="item in image"
+             v-show="$index===slide.index"
+        >
+          <a href="#"><img v-bind="{src:item.img}" width="100%"></a>
           <div class="image-footer">
-            <p class="image-title"></p>
+            <p class="image-title">{{{item.author}}}</p>
           </div>
           <div class="calendar">
             <div class="date">
-              <p>VOL</p>
-              <p class="day">27</p>
-              <p> jun, 2016</p>
+              <p>{{item.vol}}</p>
+              <p class="day">{{item.day}}</p>
+              <p>{{item.month}}</p>
             </div>
-            <p class="citation"></p>
+            <p class="citation">{{{item.content}}}</p>
             <div class="clearfix"></div>
           </div>
-          <ol class="indicator">
-            <li></li>
-          </ol>
         </div>
+        <ol class="indicator">
+          <li v-for="n in image.length"
+              @click="slide.select(n)"
+          >
+            {{n === slide.index ? '●' : '○'}}
+          </li>
+        </ol>
       </div>
     </div>
 
@@ -77,12 +84,49 @@
 <script>
   import Home from '../stores/home';
 
+  class Slide {
+    constructor(len) {
+      this.start = 0;
+      this.end = len - 1;
+      this.index = this.start;
+    }
+
+    next() {
+      if (this.index === this.end) {
+        this.index = this.start;
+      } else {
+        this.index++;
+      }
+    }
+
+    prev() {
+      if (this.index === this.start) {
+        this.index = this.end;
+      } else {
+        this.index--;
+      }
+    }
+
+    select(index) {
+      this.index = index;
+    }
+
+    run(interval) {
+      interval = interval || 10000; // 10 sec
+      setInterval(() => {
+        this.next();
+      }, interval);
+    }
+  }
+
   export default {
     data() {
       return {
         loading: true,
-        article: {},
-        question: {}
+        article: [],
+        question: [],
+        image: [],
+        slide: {}
       };
     },
     ready() {
@@ -90,9 +134,13 @@
         this.loading = false;
         this.article = data.article;
         this.question = data.question;
+        this.image = data.slide;
+        this.slide = new Slide(this.image.length);
+        this.slide.run(5000);
       });
     }
   };
+
 </script>
 
 <style>
@@ -197,12 +245,13 @@
   }
 
   .image-title {
-    padding: 3px 0;
     margin: 0;
     text-align: center;
     background-color: #000;
     color: #fff;
     font-size: 14px;
+    line-height: 22px;
+    height: 23px;
   }
 
   .calendar {
@@ -251,10 +300,19 @@
 
   .indicator {
     margin: 0;
+    padding: 0;
     background-color: #000;
     color: #fff;
-    padding: 3px 0;
+    height: 22px;
     text-align: center;
+  }
+
+  .indicator li {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 20px;
+    display: inline;
+    cursor: pointer;
   }
 
 </style>
