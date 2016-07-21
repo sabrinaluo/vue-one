@@ -7,8 +7,11 @@ module.exports = {
   plugins: [
     'html'
   ],
-  'rules': {
+  rules: {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+  },
+  globals: {
+    window: true
   }
 };
