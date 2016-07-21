@@ -29,8 +29,9 @@ http://sabrinaluo.com/vue-one
 - 使用了`vue-router`，`vue-resource`
 - 配合`Vue.http.options.root`与`vue-router`使用，在`src/stores`下可看到相关使用
 - 在路由的定义中，使用了具名路径
-- 在定义每个组件时，要用`<div>`包住整个组件。因为假如这样启动app，`router.start(App, '#app');`，其实整个组建不是嵌入到`#app`之中，而是替换`#app`这个元素。如果没有一个root元素包裹住组件，可能会影响scope（个人猜测啦，反正不包住会报错这是真的）
+- 在定义`App.vue`（根组件？）时，要用`<div>`包住整个组件。因为假如这样启动app，`router.start(App, '#app');`，其实整个组建不是嵌入到`#app`之中，而是替换`#app`这个元素。如果没有一个root元素包裹住组件，可能会影响scope（个人猜测啦，反正不包住会报错这是真的）
 - 以前觉得用不到数据结构，图片轮播carousel其实就是一个循环链表，但我写的时候也没觉得自己写的是链表，可能是因为抽象思维太差啦
+- 组件属性在定义时用camelcase，而在html中引用组件时，要用kebab-case，也就是用`-`连接各个单词
 
 ### CSS
 img下方总是会有大概5px的空白，margin padding怎么改都不管用，原因是img是内联元素，解决方法
