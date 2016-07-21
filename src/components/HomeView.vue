@@ -1,4 +1,5 @@
 <template>
+  <loading :is-loading="loading"></loading>
   <div class="container"
        v-if="!loading"
   >
@@ -83,6 +84,7 @@
 
 <script>
   import Home from '../stores/home';
+  import Loading from './Loading';
 
   class Slide {
     constructor(len) {
@@ -120,6 +122,9 @@
   }
 
   export default {
+    components: {
+      Loading
+    },
     data() {
       return {
         loading: true,
@@ -162,7 +167,7 @@
     padding: 0 5px;
   }
 
-  @media (max-width: 864px) {
+  @media (max-width: 1000px) {
     .left-column {
       width: 100%;
     }
@@ -240,18 +245,21 @@
     white-space: nowrap;
   }
 
+  .col-image {
+    margin-bottom: 10px;
+  }
+
   .col-image img {
     display: block;
   }
 
   .image-title {
+    padding: 3px 0;
     margin: 0;
     text-align: center;
     background-color: #000;
     color: #fff;
     font-size: 14px;
-    line-height: 22px;
-    height: 23px;
   }
 
   .calendar {
