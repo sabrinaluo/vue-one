@@ -41,6 +41,14 @@ img{
 }
 ```
 
+### Deploy
+在`vue-one`目录下克隆远程`gh-pages`分支，并命名为dist
+```
+git clone -b gh-pages git@github.com:sabrinaluo/vue-one dist
+```
+
+Build之前记得改`assetsPublicPath`！
+
 ## IMPORTANT!
 `config/index.js`中的`assetsPublicPath: '/'`
 - 在开发环境下应该设为`'/'`，否则localhost:3000将返回404
