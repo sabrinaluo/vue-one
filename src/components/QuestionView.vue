@@ -1,4 +1,5 @@
 <template>
+  <loading :is-loading="loading"></loading>
   <article class="article"
            v-show="!loading"
   >
@@ -19,8 +20,12 @@
 
 <script>
   import Question from '../stores/question';
+  import Loading from './Loading';
 
   export default {
+    components: {
+      Loading
+    },
     data() {
       return {
         loading: true,

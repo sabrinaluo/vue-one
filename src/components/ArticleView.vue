@@ -1,4 +1,5 @@
 <template>
+  <loading :is-loading="loading"></loading>
   <article class="article"
            v-show="!loading">
     <blockquote class="quote">
@@ -13,8 +14,12 @@
 
 <script>
   import Article from '../stores/article';
+  import Loading from './Loading';
 
   export default {
+    components: {
+      Loading
+    },
     data() {
       return {
         loading: true,
