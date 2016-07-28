@@ -34,10 +34,19 @@ http://sabrinaluo.com/vue-one
 - 组件属性在定义时用camelcase，而在html中引用组件时，要用kebab-case，也就是用`-`连接各个单词
 
 ### CSS
-img下方总是会有大概5px的空白，margin padding怎么改都不管用，原因是img是内联元素，解决方法
+- img下方总是会有大概5px的空白，margin padding怎么改都不管用，原因是img是内联元素，解决方法
 ```
-img{
+img {
     display: block;
+}
+```
+- 单行文字，如果超出宽度则在结尾显示...
+```
+p {
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 ```
 
