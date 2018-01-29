@@ -8,7 +8,7 @@ import HomeView from './components/HomeView';
 
 Vue.use(Router);
 Vue.use(Resource);
-Vue.http.options.root = 'http://hiitea-api.herokuapp.com/one';
+Vue.http.options.root = '//hiitea-api.herokuapp.com/one';
 
 export var router = new Router();
 
